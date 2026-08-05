@@ -90,6 +90,10 @@ html {
   scroll-padding-top: 7rem;
 }
 
+html.has-lenis {
+  scroll-behavior: auto;
+}
+
 body {
   min-width: 320px;
   overflow-x: hidden;
@@ -114,6 +118,12 @@ body::before {
   background: linear-gradient(90deg, var(--canvas) 0%, transparent 18%, transparent 82%, var(--canvas) 100%);
   content: "";
   pointer-events: none;
+}
+
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
 }
 
 ::selection {
@@ -215,32 +225,42 @@ p:last-child {
 }
 
 .brand-mark {
-  position: relative;
-  width: 1.55rem;
-  height: 1.55rem;
+  display: grid;
+  width: 1.8rem;
+  height: 1.8rem;
+  place-items: center;
   border: 1px solid var(--blueprint);
-  border-radius: 50%;
+  border-radius: 0.3rem;
+  background: var(--trace-soft);
+  box-shadow: inset 0 0 0 1px var(--soft-surface);
+  transition: border-color 220ms ease, box-shadow 220ms ease, transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.brand-mark::before,
-.brand-mark::after {
-  position: absolute;
-  background: var(--trace);
-  content: "";
+.brand-mark svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: var(--trace);
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 2;
 }
 
-.brand-mark::before {
-  top: 50%;
-  right: -0.26rem;
-  left: -0.26rem;
-  height: 1px;
+.brand:hover .brand-mark {
+  border-color: var(--trace);
+  box-shadow: inset 0 0 0 1px var(--soft-surface), 0 0 1.1rem var(--trace-soft);
+  transform: translateY(-1px) rotate(-3deg);
 }
 
-.brand-mark::after {
-  top: -0.26rem;
-  bottom: -0.26rem;
-  left: 50%;
-  width: 1px;
+.brand-mark svg path:last-child {
+  stroke-dasharray: 8;
+  animation: terminal-cursor 1.05s steps(2, jump-none) infinite;
+}
+
+@keyframes terminal-cursor {
+  50% {
+    opacity: 0.25;
+  }
 }
 
 .nav-controls {
@@ -414,10 +434,83 @@ p:last-child {
 }
 
 .hero {
+  position: relative;
   display: flex;
   min-height: 100svh;
   align-items: flex-end;
+  overflow: hidden;
   padding: clamp(8rem, 16vh, 11rem) 0 clamp(4rem, 8vh, 7rem);
+}
+
+.hero::before {
+  position: absolute;
+  top: 7%;
+  right: -9vw;
+  width: min(48rem, 62vw);
+  aspect-ratio: 1;
+  border: 1px solid var(--line-soft);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 clamp(3rem, 8vw, 8rem) var(--trace-haze),
+    inset 0 0 8rem var(--trace-haze);
+  content: "";
+  opacity: 0.52;
+  pointer-events: none;
+  transform: translate3d(calc(var(--hero-progress, 0) * 7rem), calc(var(--hero-progress, 0) * -5rem), 0) rotate(calc(var(--hero-progress, 0) * 24deg));
+  transition: opacity 300ms ease;
+  will-change: transform;
+}
+
+.hero::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: clamp(1rem, 6vw, 7rem);
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--line) 18%, var(--trace) 68%, transparent);
+  content: "";
+  opacity: 0.7;
+  pointer-events: none;
+  transform: scaleY(calc(0.3 + var(--hero-progress, 0) * 0.7));
+  transform-origin: top;
+}
+
+.hero-signal {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: clamp(1rem, 4vw, 4rem);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--blueprint);
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: translateY(-50%) rotate(90deg) translateX(50%);
+  transform-origin: right center;
+}
+
+.hero-signal i {
+  width: clamp(2rem, 5vw, 5rem);
+  height: 1px;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.hero-signal i::after {
+  display: block;
+  width: 45%;
+  height: 100%;
+  background: var(--trace);
+  content: "";
+  animation: signal-run 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes signal-run {
+  from { transform: translateX(-120%); }
+  to { transform: translateX(340%); }
 }
 
 .hero-kicker,
@@ -450,9 +543,33 @@ p:last-child {
 }
 
 .hero-title {
-  max-width: 970px;
+  max-width: 1200px;
   margin: 0;
-  font-size: clamp(3.35rem, 9vw, 8rem);
+  font-size: clamp(3.35rem, 7.7vw, 7rem);
+}
+
+.hero-line {
+  display: block;
+  overflow: hidden;
+  padding: 0.05em 0 0.1em;
+  margin-bottom: -0.12em;
+}
+
+.hero-line > span {
+  display: block;
+  opacity: 0;
+  transform: translateY(112%) rotate(1.5deg);
+  transform-origin: left bottom;
+  transition: opacity 400ms ease, transform 1100ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.is-ready .hero-line > span {
+  opacity: 1;
+  transform: translateY(0) rotate(0);
+}
+
+.is-ready .hero-line:nth-child(2) > span {
+  transition-delay: 110ms;
 }
 
 .hero-title .outline {
@@ -461,7 +578,11 @@ p:last-child {
 }
 
 .hero .container-xl {
-  transform: translate3d(0, calc(var(--hero-progress, 0) * -2rem), 0);
+  position: relative;
+  z-index: 1;
+  opacity: calc(1 - var(--hero-progress, 0) * 0.42);
+  transform: translate3d(0, calc(var(--hero-progress, 0) * -5rem), 0) scale(calc(1 - var(--hero-progress, 0) * 0.035));
+  transform-origin: center bottom;
   will-change: transform;
 }
 
@@ -556,6 +677,7 @@ p:last-child {
 .trace-section {
   position: relative;
   isolation: isolate;
+  min-height: min(94vh, 70rem);
   padding: var(--section-space) 0;
 }
 
@@ -574,14 +696,13 @@ p:last-child {
   border-radius: 50%;
   background: radial-gradient(circle, var(--trace-haze), transparent 68%);
   content: "";
-  opacity: 0;
+  opacity: calc(var(--section-focus, 0) * 0.92);
   pointer-events: none;
   transform: translate3d(0, calc(2rem + var(--section-haze-parallax, 0px)), 0) scale(0.88);
   transition: opacity 700ms ease, transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .trace-section.is-active::before {
-  opacity: 1;
   transform: translate3d(0, var(--section-haze-parallax, 0px), 0) scale(1);
 }
 
@@ -1496,8 +1617,8 @@ p:last-child {
 
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(44px) scale(0.985);
+  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 850ms cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
@@ -1876,6 +1997,16 @@ p:last-child {
     padding-top: 9rem;
   }
 
+  .hero-signal {
+    display: none;
+  }
+
+  .hero::before {
+    top: 15%;
+    right: -42vw;
+    width: 95vw;
+  }
+
   .hero-title {
     font-size: clamp(3rem, 15vw, 5.25rem);
   }
@@ -1885,6 +2016,7 @@ p:last-child {
   }
 
   .trace-section {
+    min-height: auto;
     padding-left: 2.3rem;
   }
 
@@ -2055,10 +2187,20 @@ p:last-child {
     display: none;
   }
 
+  .hero-signal {
+    display: none;
+  }
+
   .hero .container-xl,
+  .hero::before,
+  .hero::after,
   .project-visual,
   .trace-section > .container-xl,
   .trace-section::before {
     transform: none !important;
+  }
+
+  .hero .container-xl {
+    opacity: 1;
   }
 }

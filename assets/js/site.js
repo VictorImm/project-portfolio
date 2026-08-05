@@ -19,8 +19,36 @@
   const tenureNodes = [...document.querySelectorAll("[data-experience-since]")];
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const finePointer = window.matchMedia("(pointer: fine)");
+  let lenis = null;
 
   const clamp = (number, min, max) => Math.min(Math.max(number, min), max);
+
+  const startSmoothScroll = () => {
+    if (reduceMotion.matches || lenis || typeof window.Lenis !== "function") return;
+
+    lenis = new window.Lenis({
+      autoRaf: true,
+      anchors: { offset: -96 },
+      lerp: 0.14,
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1,
+      stopInertiaOnNavigate: true
+    });
+
+    root.classList.add("has-lenis");
+  };
+
+  const syncSmoothScrollPreference = () => {
+    if (reduceMotion.matches) {
+      lenis?.destroy();
+      lenis = null;
+      root.classList.remove("has-lenis");
+      return;
+    }
+
+    startSmoothScroll();
+  };
 
   const getSavedTheme = () => {
     try {
@@ -128,9 +156,11 @@
         const bounds = section.getBoundingClientRect();
         const centerOffset = bounds.top + bounds.height * 0.5 - window.innerHeight * 0.5;
         const parallaxProgress = clamp(centerOffset / Math.max(bounds.height + window.innerHeight, 1), -0.5, 0.5);
+        const sectionFocus = 1 - clamp(Math.abs(centerOffset) / Math.max(bounds.height * 0.65 + window.innerHeight * 0.5, 1), 0, 1);
         const sectionParallax = -parallaxProgress * 28;
         section.style.setProperty("--section-parallax", `${sectionParallax.toFixed(2)}px`);
         section.style.setProperty("--section-haze-parallax", `${(sectionParallax * 1.8).toFixed(2)}px`);
+        section.style.setProperty("--section-focus", sectionFocus.toFixed(4));
       });
 
       projectChapters.forEach((chapter) => {
@@ -251,6 +281,9 @@
 
   window.addEventListener("scroll", requestScrollUpdate, { passive: true });
   window.addEventListener("resize", requestScrollUpdate, { passive: true });
+  reduceMotion.addEventListener?.("change", syncSmoothScrollPreference);
+  syncSmoothScrollPreference();
+  window.requestAnimationFrame(() => root.classList.add("is-ready"));
   setScrollState();
   updateTenures();
   window.setInterval(updateTenures, 60 * 60 * 1000);
