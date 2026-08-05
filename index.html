@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <script>
@@ -26,6 +27,7 @@
     })();
   </script>
   <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.25/dist/lenis.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/atropos@2.0.2/atropos.min.css">
   <link rel="stylesheet" href="assets/css/site.css">
   <title>Victor Immanuel Sunarko — Software Engineer</title>
 </head>
@@ -106,7 +108,10 @@
 
     <div class="trace-layout">
       <div class="trace-rail" aria-hidden="true">
-        <div class="trace-rail-fill"></div>
+        <svg class="trace-svg" preserveAspectRatio="none">
+          <path class="trace-path-base"></path>
+          <path class="trace-path-active"></path>
+        </svg>
         <span class="trace-cursor"></span>
       </div>
 
@@ -167,18 +172,24 @@
               </dl>
               <p class="nda-note">Public summary intentionally limited to transferable engineering capabilities. Internal application names, workflows, data, architecture, and performance figures are omitted.</p>
             </div>
-            <div class="professional-visual project-visual" role="img" aria-label="Public-safe map of Victor's professional financial application stack">
-              <div class="visual-window">
-                <div class="visual-toolbar">
-                  <span>Professional stack / public view</span>
-                  <span class="toolbar-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                </div>
-                <div class="visual-body professional-stack-map">
-                  <div class="stack-lane"><span>Interface</span><strong>Legacy MVC<br>server-rendered web</strong></div>
-                  <div class="stack-connector" aria-hidden="true"></div>
-                  <div class="stack-lane primary"><span>Application</span><strong>JVM applications<br>lightweight services</strong></div>
-                  <div class="stack-connector" aria-hidden="true"></div>
-                  <div class="stack-lane"><span>Data &amp; jobs</span><strong>Relational data<br>workflow + scheduling</strong></div>
+            <div class="professional-visual project-visual atropos js-atropos" role="img" aria-label="Public-safe map of Victor's professional financial application stack">
+              <div class="atropos-scale">
+                <div class="atropos-rotate">
+                  <div class="atropos-inner">
+                    <div class="visual-window" data-atropos-offset="1">
+                      <div class="visual-toolbar">
+                        <span>Professional stack / public view</span>
+                        <span class="toolbar-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                      </div>
+                      <div class="visual-body professional-stack-map">
+                        <div class="stack-lane"><span>Interface</span><strong>Legacy MVC<br>server-rendered web</strong></div>
+                        <div class="stack-connector" aria-hidden="true"></div>
+                        <div class="stack-lane primary"><span>Application</span><strong>JVM applications<br>lightweight services</strong></div>
+                        <div class="stack-connector" aria-hidden="true"></div>
+                        <div class="stack-lane"><span>Data &amp; jobs</span><strong>Relational data<br>workflow + scheduling</strong></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -361,43 +372,70 @@
               <p class="section-lead">Independent and collaborative work across health, productivity, web, mobile, desktop applications, and applied machine learning.</p>
             </div>
           </div>
-          <div class="notes-grid">
-            <div class="note-link reveal">
-              <span class="article-meta">2025 · Thesis</span>
-              <h3>ResNet-based few-shot learning for brain tumor classification</h3>
-              <span class="note-topic">Python · Deep learning</span>
-              <span class="note-arrow" aria-hidden="true">01</span>
+          <div class="projects-stage">
+            <div class="notes-grid">
+              <div class="note-link reveal atropos project-panel js-atropos">
+                <div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">
+                  <div class="project-panel-content" data-atropos-offset="1">
+                    <span class="article-meta">2025 · Thesis</span>
+                    <h3>ResNet-based few-shot learning for brain tumor classification</h3>
+                    <span class="note-topic">Python · Deep learning</span>
+                    <span class="note-arrow" aria-hidden="true">01</span>
+                  </div>
+                </div></div></div>
+              </div>
+              <div class="note-link reveal atropos project-panel js-atropos">
+                <div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">
+                  <div class="project-panel-content" data-atropos-offset="1">
+                    <span class="article-meta">2024 · Bangkit</span>
+                    <h3>Nutrisee — image recognition for nutritional-fact analysis</h3>
+                    <span class="note-topic">TensorFlow · Python</span>
+                    <span class="note-arrow" aria-hidden="true">02</span>
+                  </div>
+                </div></div></div>
+              </div>
+              <div class="note-link reveal atropos project-panel js-atropos">
+                <div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">
+                  <div class="project-panel-content" data-atropos-offset="1">
+                    <span class="article-meta">2024 · Mobile</span>
+                    <h3>ASPIRASI — a Firebase-backed digital guest book</h3>
+                    <span class="note-topic">Kotlin · Firebase</span>
+                    <span class="note-arrow" aria-hidden="true">03</span>
+                  </div>
+                </div></div></div>
+              </div>
+              <div class="note-link reveal atropos project-panel js-atropos">
+                <div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">
+                  <div class="project-panel-content" data-atropos-offset="1">
+                    <span class="article-meta">2023 · Mobile</span>
+                    <h3>ASAH — a health-focused super app built with a six-person team</h3>
+                    <span class="note-topic">Kotlin · Collaboration</span>
+                    <span class="note-arrow" aria-hidden="true">04</span>
+                  </div>
+                </div></div></div>
+              </div>
+              <div class="note-link reveal atropos project-panel js-atropos">
+                <div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">
+                  <div class="project-panel-content" data-atropos-offset="1">
+                    <span class="article-meta">2023 · Web</span>
+                    <h3>Ponorogo city landing page built with a four-person team</h3>
+                    <span class="note-topic">HTML · CSS · JS · PHP</span>
+                    <span class="note-arrow" aria-hidden="true">05</span>
+                  </div>
+                </div></div></div>
+              </div>
+              <div class="note-link reveal atropos project-panel js-atropos">
+                <div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">
+                  <div class="project-panel-content" data-atropos-offset="1">
+                    <span class="article-meta">2022—2023</span>
+                    <h3>Prediction and decision-making experiments across desktop and ML</h3>
+                    <span class="note-topic">Python · Tkinter · Deep learning</span>
+                    <span class="note-arrow" aria-hidden="true">06</span>
+                  </div>
+                </div></div></div>
+              </div>
             </div>
-            <div class="note-link reveal">
-              <span class="article-meta">2024 · Bangkit</span>
-              <h3>Nutrisee — image recognition for nutritional-fact analysis</h3>
-              <span class="note-topic">TensorFlow · Python</span>
-              <span class="note-arrow" aria-hidden="true">02</span>
-            </div>
-            <div class="note-link reveal">
-              <span class="article-meta">2024 · Mobile</span>
-              <h3>ASPIRASI — a Firebase-backed digital guest book</h3>
-              <span class="note-topic">Kotlin · Firebase</span>
-              <span class="note-arrow" aria-hidden="true">03</span>
-            </div>
-            <div class="note-link reveal">
-              <span class="article-meta">2023 · Mobile</span>
-              <h3>ASAH — a health-focused super app built with a six-person team</h3>
-              <span class="note-topic">Kotlin · Collaboration</span>
-              <span class="note-arrow" aria-hidden="true">04</span>
-            </div>
-            <div class="note-link reveal">
-              <span class="article-meta">2023 · Web</span>
-              <h3>Ponorogo city landing page built with a four-person team</h3>
-              <span class="note-topic">HTML · CSS · JS · PHP</span>
-              <span class="note-arrow" aria-hidden="true">05</span>
-            </div>
-            <div class="note-link reveal">
-              <span class="article-meta">2022—2023</span>
-              <h3>Prediction and decision-making experiments across desktop and ML</h3>
-              <span class="note-topic">Python · Tkinter · Deep learning</span>
-              <span class="note-arrow" aria-hidden="true">06</span>
-            </div>
+            <div class="projects-progress" aria-hidden="true"><span></span></div>
           </div>
 
           <div class="research-community row gx-lg-5">
@@ -459,6 +497,12 @@
   </footer>
 
   <script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/MotionPathPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/atropos@2.0.2/atropos.min.js"></script>
   <script src="assets/js/site.js"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 My personal portfolio as a software engineer. It covers my professional experience, technical background, selected projects, publications, and community work.
 
-The site is a static single page built with Bootstrap, Lenis, custom CSS, and vanilla JavaScript. There is no package manager or build step.
+The site is a static single page built with Bootstrap, Lenis, GSAP, Atropos, custom CSS, and vanilla JavaScript. There is no package manager or build step.
 
 ## Run locally
 
@@ -23,7 +23,7 @@ assets/js/site.js   Theme switcher, navigation, and scroll interactions
 assets/img/         Favicon and image assets
 ```
 
-Bootstrap 5.3.8 is loaded from jsDelivr, while Lenis 1.3.25 is loaded from unpkg for smooth scrolling. The site supports light and dark themes, remembers the visitor's choice, and follows the system preference on the first visit. Motion is reduced automatically when the visitor enables the relevant system accessibility preference.
+Bootstrap 5.3.8, GSAP 3.15.0, and Atropos 2.0.2 are loaded from jsDelivr; Lenis 1.3.25 is loaded from unpkg. Lenis shares GSAP's animation ticker so smooth scrolling, scroll scenes, and the SVG execution trace run through one frame loop. The site supports light and dark themes, remembers the visitor's choice, and follows the system preference on the first visit. Motion is reduced automatically when the visitor enables the relevant system accessibility preference, and the content remains readable if the motion libraries are unavailable.
 
 My tenure at PT SPIL is calculated from 15 April 2025 and updated in the browser. Details covered by confidentiality agreements are intentionally kept at a general level.
 

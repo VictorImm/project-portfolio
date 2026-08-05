@@ -193,12 +193,21 @@ p:last-child {
 }
 
 .nav-shell {
+  width: 100%;
+  max-width: 1320px;
   min-height: 3.75rem;
+  margin-inline: auto;
   padding: 0.55rem 0.65rem 0.55rem 1rem;
   border: 1px solid transparent;
   border-radius: 0.75rem;
   pointer-events: auto;
-  transition: max-width 260ms ease, background-color 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
+  transition:
+    max-width 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 360ms ease,
+    border-color 360ms ease,
+    border-radius 480ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 480ms ease;
+  will-change: max-width;
 }
 
 .site-nav.is-scrolled .nav-shell {
@@ -557,19 +566,13 @@ p:last-child {
 
 .hero-line > span {
   display: block;
-  opacity: 0;
-  transform: translateY(112%) rotate(1.5deg);
-  transform-origin: left bottom;
-  transition: opacity 400ms ease, transform 1100ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.is-ready .hero-line > span {
   opacity: 1;
-  transform: translateY(0) rotate(0);
+  transform-origin: left bottom;
 }
 
-.is-ready .hero-line:nth-child(2) > span {
-  transition-delay: 110ms;
+.motion-ready .hero-word {
+  display: inline-block;
+  will-change: transform, opacity;
 }
 
 .hero-title .outline {
@@ -633,45 +636,73 @@ p:last-child {
   top: 0;
   bottom: 0;
   left: var(--trace-rail-x);
-  width: 1px;
+  width: 80px;
   transform: translateX(-50%);
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      var(--surface-border-strong) 0,
-      var(--surface-border-strong) 0.3rem,
-      transparent 0.3rem,
-      transparent 0.72rem
-    );
   pointer-events: none;
 }
 
-.trace-rail-fill {
+.trace-svg {
   position: absolute;
-  top: 0;
-  left: 50%;
-  width: 3px;
+  inset: 0;
+  width: 100%;
   height: 100%;
-  transform: scaleY(var(--trace-progress, 0));
-  transform-origin: top;
-  background: linear-gradient(to bottom, var(--blueprint), var(--trace) 72%, var(--trace-bright));
-  box-shadow: 0 0 18px var(--trace-spotlight);
-  will-change: transform;
+  overflow: visible;
+}
+
+.trace-path-base,
+.trace-path-active {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.trace-path-base {
+  stroke: var(--surface-border-strong);
+  stroke-dasharray: 3 7;
+  stroke-width: 1px;
+}
+
+.trace-path-active {
+  stroke: var(--trace);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.5px;
+  filter: drop-shadow(0 0 8px var(--trace-glow));
 }
 
 .trace-cursor {
   position: absolute;
   z-index: 4;
   top: 0;
-  left: 50%;
+  left: 0;
   width: 0.85rem;
   height: 0.85rem;
-  transform: translate(-50%, -50%) translate3d(0, var(--trace-travel, 0px), 0);
   border: 2px solid var(--trace);
   border-radius: 50%;
   background: var(--canvas);
   box-shadow: 0 0 0 0.38rem var(--trace-soft), 0 0 28px var(--trace-glow);
   will-change: transform;
+}
+
+.trace-cursor::after {
+  position: absolute;
+  inset: 2px;
+  border-radius: inherit;
+  background: var(--trace-bright);
+  content: "";
+  animation: cursor-breathe 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes cursor-breathe {
+  to {
+    opacity: 0.35;
+    transform: scale(0.55);
+  }
+}
+
+/* Static fallback when the motion libraries are unavailable. */
+.trace-path-active {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
 }
 
 .trace-section {
@@ -682,8 +713,7 @@ p:last-child {
 }
 
 .trace-section > .container-xl {
-  transform: translate3d(0, var(--section-parallax, 0px), 0);
-  will-change: transform;
+  position: relative;
 }
 
 .trace-section::before {
@@ -1065,26 +1095,20 @@ p:last-child {
 
 .project-visual {
   position: relative;
-  --spot-x: 50%;
-  --spot-y: 50%;
-  --tilt-x: 0deg;
-  --tilt-y: 0deg;
   min-height: 620px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 0.4rem;
   background: var(--paper);
-  transform: perspective(1200px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
   transform-style: preserve-3d;
-  transition: border-color 300ms ease, box-shadow 300ms ease, transform 240ms ease-out;
-  will-change: transform;
+  transition: border-color 300ms ease, box-shadow 300ms ease;
 }
 
 .project-visual::before {
   position: absolute;
   z-index: 0;
   inset: 0;
-  background: radial-gradient(circle at var(--spot-x) var(--spot-y), var(--trace-spotlight), transparent 28%);
+  background: radial-gradient(circle at center, var(--trace-spotlight), transparent 30%);
   content: "";
   opacity: 0;
   pointer-events: none;
@@ -1098,6 +1122,21 @@ p:last-child {
 
 .project-visual:hover::before {
   opacity: 1;
+}
+
+.project-visual > .atropos-scale,
+.project-visual .atropos-rotate,
+.project-visual .atropos-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.project-visual .atropos-inner {
+  position: relative;
+}
+
+.motion-ready .project-visual::before {
+  display: none;
 }
 
 .visual-window {
@@ -1361,14 +1400,28 @@ p:last-child {
 
 .note-link {
   position: relative;
+  display: block;
+  padding: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.note-link .atropos-scale,
+.note-link .atropos-rotate,
+.note-link .atropos-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.project-panel-content {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 0.65fr 2.2fr 1fr auto;
   align-items: center;
   gap: 1.5rem;
   padding: 1.5rem 0;
-  border-bottom: 1px solid var(--line);
-  color: var(--ink);
-  text-decoration: none;
 }
 
 .note-link::before {
@@ -1389,11 +1442,6 @@ p:last-child {
 .note-link:hover::before {
   opacity: 1;
   transform: scaleX(1);
-}
-
-.note-link > * {
-  position: relative;
-  z-index: 1;
 }
 
 .note-link h2,
@@ -1419,6 +1467,10 @@ p:last-child {
 .note-arrow {
   color: var(--trace);
   font-size: 1.2rem;
+}
+
+.projects-progress {
+  display: none;
 }
 
 .contact-panel {
@@ -1616,15 +1668,13 @@ p:last-child {
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(44px) scale(0.985);
-  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 850ms cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: var(--reveal-delay, 0ms);
-}
-
-.reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+.motion-ready .reveal {
+  visibility: hidden;
+  opacity: 0;
 }
 
 /* Inner pages */
@@ -1872,6 +1922,113 @@ p:last-child {
   line-height: 1.7;
 }
 
+@media (min-width: 992px) {
+  .motion-ready .projects-stage {
+    position: relative;
+    height: min(74vh, calc(100dvh - 7rem), 46rem);
+    min-height: min(32rem, calc(100dvh - 7rem));
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: linear-gradient(135deg, var(--soft-surface), var(--canvas));
+    box-shadow: 0 28px 80px var(--shadow-soft);
+  }
+
+  .motion-ready .notes-grid {
+    display: flex;
+    width: max-content;
+    height: 100%;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1rem;
+    border: 0;
+  }
+
+  .motion-ready .note-link {
+    width: min(58vw, 50rem);
+    height: 100%;
+    flex: 0 0 min(58vw, 50rem);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    transition: border-color 300ms ease, opacity 300ms ease;
+  }
+
+  .motion-ready .note-link.is-current {
+    border-color: var(--trace);
+  }
+
+  .motion-ready .project-panel-content {
+    height: 100%;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    align-items: start;
+    gap: clamp(0.75rem, 2vh, 1.5rem) 1.5rem;
+    padding:
+      clamp(2rem, 4vh, 3.25rem)
+      clamp(2.25rem, 5vw, 4.5rem)
+      clamp(2.75rem, 5vh, 4rem);
+    background:
+      linear-gradient(var(--grid-chart) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-chart) 1px, transparent 1px),
+      radial-gradient(circle at 85% 20%, var(--trace-haze), transparent 34%);
+    background-size: 2.5rem 2.5rem, 2.5rem 2.5rem, auto;
+  }
+
+  .motion-ready .project-panel-content .article-meta {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .motion-ready .project-panel-content h3 {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    align-self: center;
+    max-width: 42rem;
+    font-size: clamp(2.35rem, min(4.2vw, 6.4vh), 4.5rem);
+    line-height: 1.04;
+    text-wrap: balance;
+  }
+
+  .motion-ready .project-panel:last-child .project-panel-content h3 {
+    max-width: 44rem;
+  }
+
+  .motion-ready .project-panel-content .note-topic {
+    grid-row: 3;
+    grid-column: 1;
+    align-self: end;
+  }
+
+  .motion-ready .project-panel-content .note-arrow {
+    grid-row: 1;
+    grid-column: 2;
+    font-family: var(--mono);
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 0.8;
+  }
+
+  .motion-ready .projects-progress {
+    position: absolute;
+    z-index: 5;
+    right: 1rem;
+    bottom: 0.55rem;
+    left: 1rem;
+    display: block;
+    height: 2px;
+    background: var(--line-soft);
+  }
+
+  .motion-ready .projects-progress span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: var(--trace);
+    box-shadow: 0 0 12px var(--trace-glow);
+  }
+}
+
 @media (max-width: 991.98px) {
   .trace-rail,
   .trace-node {
@@ -1943,6 +2100,8 @@ p:last-child {
 
   .nav-shell,
   .site-nav.is-scrolled .nav-shell {
+    width: auto;
+    max-width: none;
     margin: 0 0.6rem;
     padding-left: 0.8rem;
     background: var(--nav-surface);
@@ -2029,6 +2188,10 @@ p:last-child {
     display: none;
   }
 
+  .trace-rail {
+    width: 42px;
+  }
+
   .project-visual {
     min-height: 420px;
   }
@@ -2106,18 +2269,18 @@ p:last-child {
     grid-column: auto;
   }
 
-  .note-link {
+  .project-panel-content {
     grid-template-columns: 1fr auto;
     gap: 0.55rem 1rem;
   }
 
-  .note-link .article-meta,
-  .note-link .note-topic {
+  .project-panel-content .article-meta,
+  .project-panel-content .note-topic {
     grid-column: 1;
   }
 
-  .note-link h2,
-  .note-link h3 {
+  .project-panel-content h2,
+  .project-panel-content h3 {
     grid-column: 1;
   }
 
@@ -2179,8 +2342,9 @@ p:last-child {
     transform: none;
   }
 
-  .trace-rail-fill {
-    transform: scaleY(1);
+  .trace-path-active {
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
   }
 
   .trace-cursor {
