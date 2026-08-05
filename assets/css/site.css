@@ -34,6 +34,9 @@
   --display: "Syne", sans-serif;
   --body: "IBM Plex Sans", sans-serif;
   --mono: "IBM Plex Mono", monospace;
+  --text-compact: 0.8rem;
+  --text-utility: 0.825rem;
+  --text-support: 0.875rem;
   --bs-body-font-family: var(--body);
   --bs-body-color: var(--ink);
   --bs-body-bg: var(--canvas);
@@ -225,7 +228,7 @@ p:last-child {
   gap: 0.7rem;
   color: var(--ink);
   font-family: var(--mono);
-  font-size: 0.73rem;
+  font-size: var(--text-utility);
   font-weight: 600;
   letter-spacing: 0.05em;
   text-decoration: none;
@@ -379,7 +382,7 @@ p:last-child {
   padding: 0.5rem 0 !important;
   color: var(--muted);
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: var(--text-utility);
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -416,7 +419,7 @@ p:last-child {
   border-radius: 2rem;
   color: var(--ink);
   font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: var(--text-compact);
   letter-spacing: 0.03em;
   text-decoration: none;
   text-transform: uppercase;
@@ -494,7 +497,7 @@ p:last-child {
   gap: 0.65rem;
   color: var(--blueprint);
   font-family: var(--mono);
-  font-size: 0.58rem;
+  font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transform: translateY(-50%) rotate(90deg) translateX(50%);
@@ -531,7 +534,7 @@ p:last-child {
 .page-kicker {
   color: var(--blueprint);
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: var(--text-utility);
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -606,7 +609,7 @@ p:last-child {
 .hero-footer a {
   color: var(--ink);
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: var(--text-utility);
   letter-spacing: 0.06em;
   text-decoration: none;
   text-transform: uppercase;
@@ -758,7 +761,7 @@ p:last-child {
   color: var(--muted);
   content: attr(data-trace-label);
   font-family: var(--mono);
-  font-size: 0.55rem;
+  font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   transform: translateX(-50%);
@@ -834,7 +837,7 @@ p:last-child {
   margin-bottom: 1rem;
   color: var(--trace);
   font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: var(--text-utility);
 }
 
 .projects {
@@ -887,7 +890,7 @@ p:last-child {
   margin: clamp(2.5rem, 8vw, 6rem) 0 0;
   color: var(--trace);
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: var(--text-utility);
   letter-spacing: 0.08em;
 }
 
@@ -902,7 +905,7 @@ p:last-child {
   border-top: 1px solid var(--professional-line);
   color: var(--professional-note);
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: var(--text-support);
   line-height: 1.65;
 }
 
@@ -933,7 +936,7 @@ p:last-child {
 .stack-lane span {
   color: var(--blueprint);
   font-family: var(--mono);
-  font-size: 0.62rem;
+  font-size: var(--text-compact);
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -988,7 +991,7 @@ p:last-child {
 .early-work-card > span {
   color: var(--blueprint);
   font-family: var(--mono);
-  font-size: 0.62rem;
+  font-size: var(--text-compact);
   text-transform: uppercase;
 }
 
@@ -1059,7 +1062,7 @@ p:last-child {
   margin-bottom: 0.3rem;
   color: var(--blueprint);
   font-family: var(--mono);
-  font-size: 0.62rem;
+  font-size: var(--text-compact);
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1078,7 +1081,7 @@ p:last-child {
   border-bottom: 1px solid var(--ink);
   color: var(--ink);
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: var(--text-utility);
   letter-spacing: 0.05em;
   text-decoration: none;
   text-transform: uppercase;
@@ -1162,7 +1165,7 @@ p:last-child {
   border-bottom: 1px solid var(--line);
   color: var(--muted);
   font-family: var(--mono);
-  font-size: 0.6rem;
+  font-size: var(--text-compact);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -1221,7 +1224,7 @@ p:last-child {
   background: var(--paper);
   color: var(--blueprint);
   font-family: var(--mono);
-  font-size: 0.62rem;
+  font-size: var(--text-compact);
   text-align: center;
   text-transform: uppercase;
 }
@@ -1261,7 +1264,7 @@ p:last-child {
 .metric-cell span {
   color: var(--muted);
   font-family: var(--mono);
-  font-size: 0.55rem;
+  font-size: var(--text-compact);
   text-transform: uppercase;
 }
 
@@ -1309,7 +1312,7 @@ p:last-child {
 
 .workflow-row span {
   font-family: var(--mono);
-  font-size: 0.63rem;
+  font-size: var(--text-compact);
   text-transform: uppercase;
 }
 
@@ -1383,7 +1386,7 @@ p:last-child {
 .timeline-period,
 .timeline-role {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: var(--text-support);
 }
 
 .timeline-role {
@@ -1460,7 +1463,7 @@ p:last-child {
 .note-read {
   color: var(--muted);
   font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: var(--text-compact);
   text-transform: uppercase;
 }
 
@@ -1514,7 +1517,7 @@ p:last-child {
   border: 1px solid var(--line);
   color: var(--ink);
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: var(--text-utility);
   letter-spacing: 0.05em;
   text-decoration: none;
   text-transform: uppercase;
@@ -1623,7 +1626,7 @@ p:last-child {
 .doi-link {
   color: var(--blueprint);
   font-family: var(--mono);
-  font-size: 0.64rem;
+  font-size: var(--text-compact);
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
@@ -1650,7 +1653,7 @@ p:last-child {
   padding-top: 1rem;
   border-top: 1px solid var(--line);
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: var(--text-utility);
 }
 
 .site-footer {
@@ -1658,7 +1661,7 @@ p:last-child {
   border-top: 1px solid var(--line-soft);
   color: var(--muted);
   font-family: var(--mono);
-  font-size: 0.62rem;
+  font-size: var(--text-compact);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -1712,7 +1715,7 @@ p:last-child {
   margin-bottom: 0.35rem;
   color: var(--blueprint);
   font-family: var(--mono);
-  font-size: 0.62rem;
+  font-size: var(--text-compact);
   font-weight: 500;
   text-transform: uppercase;
 }
@@ -1766,7 +1769,7 @@ p:last-child {
 .decision-list span {
   color: var(--trace);
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: var(--text-compact);
 }
 
 .outcome-grid {
@@ -1811,7 +1814,7 @@ p:last-child {
 .next-page span {
   color: var(--blueprint);
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: var(--text-utility);
   text-transform: uppercase;
 }
 
@@ -1865,7 +1868,7 @@ p:last-child {
   margin-top: 2rem;
   color: var(--blueprint);
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: var(--text-utility);
   text-transform: uppercase;
 }
 
