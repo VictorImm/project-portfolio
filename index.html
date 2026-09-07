@@ -35,6 +35,52 @@
   <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="scroll-progress" aria-hidden="true"></div>
 
+  <!-- 3D Parallax Background Stage (Minimalist Horror Coding Atmos) -->
+  <div class="parallax-bg-stage" aria-hidden="true">
+    <!-- Plane 1 (Deep): Grid, Scanlines & Ambient Mood Orbs -->
+    <div class="parallax-plane parallax-grid-plane js-bg-parallax" data-depth="8">
+      <div class="parallax-scanlines"></div>
+      <div class="bg-glow-orb orb-1"></div>
+      <div class="bg-glow-orb orb-horror-pulse"></div>
+    </div>
+
+    <!-- Plane 2 (Mid): Streamlined Ghost Terminal & Cursed Stack Trace -->
+    <div class="parallax-plane parallax-code-plane js-bg-parallax" data-depth="22">
+      <!-- Live Ghost Typewriter Terminal (Top-Right) -->
+      <div class="bg-ghost-terminal">
+        <div class="terminal-header">
+          <span class="term-dot"></span>
+          <span class="term-title">DAEMON_KERNEL_PANIC // :666</span>
+        </div>
+        <div class="terminal-body">
+          <span class="js-horror-terminal-text"></span><span class="term-cursor">_</span>
+        </div>
+      </div>
+
+      <!-- Compact Ghost Code Snippet (Bottom-Left) -->
+      <pre class="bg-ghost-code code-bottom-left"><code>[0xDEADBEEF] KERNEL_PANIC: thread "daemon-0"
+void* soul = malloc(sizeof(SOUL));
+>> unhandled recursive trap in abyss::listen()
+>> transaction rolled back [0x666]</code></pre>
+
+      <!-- Minimalist Hex Column (Far-Right) -->
+      <div class="bg-hex-stream hex-col-clean">
+        <span>0xDEAD</span>
+        <span>0x6660</span>
+        <span>0xCAFE</span>
+        <span>0x0000</span>
+        <span>0x1337</span>
+      </div>
+    </div>
+
+    <!-- Plane 3 (Fore): Telemetry Crosshairs & Clean Wireframe -->
+    <div class="parallax-plane parallax-nodes-plane js-bg-parallax" data-depth="36">
+      <span class="bg-crosshair ch-1" style="top: 20%; left: 4%;">+ [0x00007FFF: UNBOUND]</span>
+      <span class="bg-crosshair ch-2" style="top: 86%; right: 5%;">× [FAULT_CONTAINER: ACTIVE]</span>
+      <div class="bg-wireframe-poly p-1"></div>
+    </div>
+  </div>
+
   <header class="site-nav" aria-label="Primary navigation">
     <div class="container-xl">
       <div class="nav-shell d-flex align-items-center justify-content-between">
@@ -81,10 +127,33 @@
 
   <main id="main-content">
     <section class="hero" aria-labelledby="hero-title">
+      <div class="ambient-glow" aria-hidden="true"></div>
+      
+      <!-- 3D Floating Scene in Hero -->
+      <div class="hero-3d-scene floating-3d-scene" aria-hidden="true">
+        <div class="wireframe-cube js-3d-float" data-depth="35">
+          <div class="cube-face front"><span>JVM</span></div>
+          <div class="cube-face back"><span>DATA</span></div>
+          <div class="cube-face right"><span>MVC</span></div>
+          <div class="cube-face left"><span>JOBS</span></div>
+          <div class="cube-face top"><span>BUILD</span></div>
+          <div class="cube-face bottom"><span>DEPLOY</span></div>
+        </div>
+        <div class="floating-chip chip-1 js-chip-float" data-depth="25">
+          <span class="chip-dot"></span>
+          <span>SYS.ARCH // PRODUCTION</span>
+        </div>
+        <div class="floating-chip chip-2 js-chip-float" data-depth="15">
+          <span class="chip-code">BUILD // 01</span>
+          <span>FULL EXECUTION PATH</span>
+        </div>
+      </div>
+
       <div class="hero-signal" aria-hidden="true">
-        <span>trace://portfolio</span>
+        <span class="signal-live-dot"></span>
+        <span>SYS://ONLINE</span>
         <i></i>
-        <span>scroll to execute</span>
+        <span>SURABAYA · UTC+7</span>
       </div>
       <div class="container-xl">
         <p class="hero-kicker">Software engineer · Surabaya, Indonesia</p>
@@ -97,53 +166,94 @@
         </p>
         <div class="hero-footer row align-items-center gy-3">
           <div class="col-md-6">
-            <a class="scroll-cue" href="#approach">Explore my professional path</a>
+            <a class="scroll-cue" href="#approach">
+              <span>Explore my professional path</span>
+              <svg class="cue-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M10 3v14M4 11l6 6 6-6"/>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="trace-layout">
-      <div class="trace-rail" aria-hidden="true">
-        <svg class="trace-svg" preserveAspectRatio="none">
-          <path class="trace-path-base"></path>
-          <path class="trace-path-active"></path>
-        </svg>
-        <span class="trace-cursor"></span>
-      </div>
-
-      <section class="trace-section" id="approach" aria-labelledby="approach-title">
-        <span class="trace-node" data-trace-label="Profile" aria-hidden="true"></span>
+    <div class="portfolio-sections">
+      <section class="portfolio-section" id="approach" aria-labelledby="approach-title">
         <div class="container-xl">
           <div class="row">
             <div class="col-lg-5 pe-lg-5">
-              <p class="eyebrow">Profile</p>
-              <h2 class="section-heading reveal" id="approach-title">Comfortable across the whole execution path.</h2>
-              <p class="section-lead">My professional work sits where established systems, evolving requirements, and operational continuity meet. I trace behavior end to end, then make focused changes that teams can safely carry forward.</p>
+              <p class="eyebrow">Engineering Architecture</p>
+              <h2 class="section-heading reveal" id="approach-title">How dependable software is built.</h2>
+              <p class="section-lead">My engineering focus sits where established systems, evolving requirements, and operational continuity meet. I trace behavior end to end across three core building layers, engineering focused solutions teams can safely carry forward.</p>
+              
+              <!-- System Building Specs HUD -->
+              <div class="building-specs-hud reveal">
+                <div class="hud-item">
+                  <span class="hud-label">01 / ARCHITECTURE</span>
+                  <strong>Modular Mixed-Gen</strong>
+                  <p>Cohesive bridges between legacy MVC interfaces, JVM services, and enterprise databases.</p>
+                </div>
+                <div class="hud-item">
+                  <span class="hud-label">02 / INTEGRITY</span>
+                  <strong>Evidence-Led Optimization</strong>
+                  <p>Preserving business semantics with deep query analysis and execution plan tuning.</p>
+                </div>
+              </div>
             </div>
             <div class="col-lg-5 offset-lg-2">
-              <article class="principle reveal">
-                <span class="principle-code">APPLICATION / 01</span>
+              <article class="principle building-card reveal">
+                <div class="building-card-header">
+                  <span class="principle-code">LAYER 01 // INTERFACE</span>
+                  <span class="building-tag">WEB LAYER</span>
+                </div>
                 <h3>Maintain and evolve the web layer</h3>
                 <p>Building and refining business-facing interfaces across legacy MVC and server-rendered web applications while preserving established workflows.</p>
+                <div class="building-schematic">
+                  <span class="schematic-step">Server Render</span>
+                  <span class="schematic-arrow">➔</span>
+                  <span class="schematic-step">Client Scripting</span>
+                  <span class="schematic-arrow">➔</span>
+                  <span class="schematic-step">State Sync</span>
+                </div>
               </article>
-              <article class="principle reveal">
-                <span class="principle-code">DATA / 02</span>
+
+              <article class="principle building-card reveal">
+                <div class="building-card-header">
+                  <span class="principle-code">LAYER 02 // DATA ENGINE</span>
+                  <span class="building-tag">DATA LAYER</span>
+                </div>
                 <h3>Work close to the data layer</h3>
                 <p>Investigating query behavior, preserving business semantics, and improving data-intensive paths with careful, evidence-led optimization.</p>
+                <div class="building-schematic">
+                  <span class="schematic-step">Relational Engine</span>
+                  <span class="schematic-arrow">➔</span>
+                  <span class="schematic-step">Index & Plan</span>
+                  <span class="schematic-arrow">➔</span>
+                  <span class="schematic-step">ACID Safety</span>
+                </div>
               </article>
-              <article class="principle reveal">
-                <span class="principle-code">AUTOMATION / 03</span>
+
+              <article class="principle building-card reveal">
+                <div class="building-card-header">
+                  <span class="principle-code">LAYER 03 // AUTOMATION</span>
+                  <span class="building-tag">SERVICES</span>
+                </div>
                 <h3>Connect work across services</h3>
                 <p>Connecting JVM applications, lightweight services, workflow automation, and scheduled jobs to support integration and operational processing.</p>
+                <div class="building-schematic">
+                  <span class="schematic-step">JVM Services</span>
+                  <span class="schematic-arrow">➔</span>
+                  <span class="schematic-step">REST Pipeline</span>
+                  <span class="schematic-arrow">➔</span>
+                  <span class="schematic-step">Scheduled Jobs</span>
+                </div>
               </article>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="trace-section" id="work" aria-labelledby="work-title">
-        <span class="trace-node" data-trace-label="Professional" aria-hidden="true"></span>
+      <section class="portfolio-section" id="work" aria-labelledby="work-title">
         <div class="container-xl">
           <div class="row mb-5">
             <div class="col-lg-5">
@@ -174,16 +284,25 @@
                 <div class="atropos-rotate">
                   <div class="atropos-inner">
                     <div class="visual-window" data-atropos-offset="1">
-                      <div class="visual-toolbar">
+                      <div class="visual-toolbar" data-atropos-offset="2">
                         <span>Professional stack / public view</span>
                         <span class="toolbar-dots" aria-hidden="true"><i></i><i></i><i></i></span>
                       </div>
                       <div class="visual-body professional-stack-map">
-                        <div class="stack-lane"><span>Interface</span><strong>Legacy MVC<br>server-rendered web</strong></div>
-                        <div class="stack-connector" aria-hidden="true"></div>
-                        <div class="stack-lane primary"><span>Application</span><strong>JVM applications<br>lightweight services</strong></div>
-                        <div class="stack-connector" aria-hidden="true"></div>
-                        <div class="stack-lane"><span>Data &amp; jobs</span><strong>Relational data<br>workflow + scheduling</strong></div>
+                        <div class="stack-lane" data-atropos-offset="4">
+                          <span>Interface</span>
+                          <strong>Legacy MVC<br>server-rendered web</strong>
+                        </div>
+                        <div class="stack-connector" data-atropos-offset="5" aria-hidden="true"><span class="pulse-beam"></span></div>
+                        <div class="stack-lane primary" data-atropos-offset="7">
+                          <span>Application</span>
+                          <strong>JVM applications<br>lightweight services</strong>
+                        </div>
+                        <div class="stack-connector" data-atropos-offset="5" aria-hidden="true"><span class="pulse-beam"></span></div>
+                        <div class="stack-lane" data-atropos-offset="4">
+                          <span>Data &amp; jobs</span>
+                          <strong>Relational data<br>workflow + scheduling</strong>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -230,8 +349,7 @@
         </div>
       </section>
 
-      <section class="trace-section" id="experience" aria-labelledby="experience-title">
-        <span class="trace-node" data-trace-label="Journey" aria-hidden="true"></span>
+      <section class="portfolio-section" id="experience" aria-labelledby="experience-title">
         <div class="container-xl">
           <div class="row mb-5">
             <div class="col-lg-5">
@@ -262,8 +380,7 @@
         </div>
       </section>
 
-      <section class="trace-section" id="credentials" aria-labelledby="credentials-title">
-        <span class="trace-node" data-trace-label="Capabilities" aria-hidden="true"></span>
+      <section class="portfolio-section" id="credentials" aria-labelledby="credentials-title">
         <div class="container-xl">
           <div class="row mb-5">
             <div class="col-lg-5">
@@ -277,24 +394,40 @@
 
           <div class="capability-grid">
             <article class="capability-card reveal">
-              <span class="principle-code">WEB / 01</span>
+              <div class="card-3d-glyph" aria-hidden="true"></div>
+              <span class="principle-code">WEB // 01</span>
               <h3>Financial web applications</h3>
               <p>Legacy MVC, server-rendered interfaces, established UI component systems, and client-side scripting for maintaining business-facing workflows.</p>
+              <div class="capability-tech-tags">
+                <span>MVC</span><span>SSR UI</span><span>State Sync</span>
+              </div>
             </article>
             <article class="capability-card reveal">
-              <span class="principle-code">SERVICE / 02</span>
+              <div class="card-3d-glyph" aria-hidden="true"></div>
+              <span class="principle-code">SERVICE // 02</span>
               <h3>Services &amp; automation</h3>
               <p>JVM applications, lightweight services, REST integration, workflow automation, and scheduled jobs for asynchronous processing.</p>
+              <div class="capability-tech-tags">
+                <span>JVM</span><span>REST APIs</span><span>Cron Daemons</span>
+              </div>
             </article>
             <article class="capability-card reveal">
-              <span class="principle-code">DATA / 03</span>
+              <div class="card-3d-glyph" aria-hidden="true"></div>
+              <span class="principle-code">DATA // 03</span>
               <h3>Data-intensive engineering</h3>
               <p>Working close to enterprise relational data: tracing execution paths, reviewing queries and stored logic, preserving semantics, and approaching optimization with measurable evidence.</p>
+              <div class="capability-tech-tags">
+                <span>RDBMS</span><span>Query Plans</span><span>ACID Safety</span>
+              </div>
             </article>
             <article class="capability-card reveal">
-              <span class="principle-code">FOUNDATION / 04</span>
+              <div class="card-3d-glyph" aria-hidden="true"></div>
+              <span class="principle-code">FOUNDATION // 04</span>
               <h3>Mobile &amp; applied ML</h3>
               <p>Flutter, Dart, Kotlin, Firebase, RoomDB, Python, TensorFlow, ML Kit, NumPy, and pandas from earlier product, research, and learning experience.</p>
+              <div class="capability-tech-tags">
+                <span>Flutter</span><span>Kotlin</span><span>TensorFlow</span>
+              </div>
             </article>
           </div>
 
@@ -357,16 +490,22 @@
         </div>
       </section>
 
-      <section class="trace-section" id="notes" aria-labelledby="notes-title">
-        <span class="trace-node" data-trace-label="Projects" aria-hidden="true"></span>
+      <section class="portfolio-section" id="notes" aria-labelledby="notes-title">
         <div class="container-xl">
-          <div class="row mb-5">
-            <div class="col-lg-5">
+          <div class="row mb-5 align-items-end">
+            <div class="col-lg-6">
               <p class="eyebrow">Projects &amp; research</p>
-              <h2 class="section-heading reveal" id="notes-title">A wider field of experiments.</h2>
+              <h2 class="section-heading reveal mb-0" id="notes-title">A wider field of experiments.</h2>
             </div>
-            <div class="col-lg-4 offset-lg-3 align-self-end">
-              <p class="section-lead">Independent and collaborative work across health, productivity, web, mobile, desktop applications, and applied machine learning.</p>
+            <div class="col-lg-5 offset-lg-1">
+              <p class="section-lead mb-3">Independent and collaborative work across health, productivity, web, mobile, desktop applications, and applied machine learning.</p>
+              <div class="projects-guide-bar d-none d-lg-flex align-items-center justify-content-between">
+                <span class="projects-counter-badge"><b id="project-curr-index">01</b> / 06 CASES</span>
+                <div class="projects-actions">
+                  <button class="proj-nav-btn js-prev-proj" type="button" aria-label="Previous project">←</button>
+                  <button class="proj-nav-btn js-next-proj" type="button" aria-label="Next project">→</button>
+                </div>
+              </div>
             </div>
           </div>
           <div class="projects-stage">
@@ -374,60 +513,90 @@
               <a class="note-link reveal atropos project-panel js-atropos" href="projects/project.html?case=brain-tumor-classification">
                 <div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">
                   <div class="project-panel-content" data-atropos-offset="1">
-                    <span class="article-meta">2025 · Thesis</span>
+                    <div class="panel-header">
+                      <span class="article-meta">2025 · Thesis</span>
+                      <span class="panel-badge">Case 01</span>
+                    </div>
                     <h3>ResNet-based few-shot learning for brain tumor classification</h3>
-                    <span class="note-topic">Python · Deep learning</span>
-                    <span class="note-arrow" aria-hidden="true">01</span>
+                    <div class="panel-footer">
+                      <span class="note-topic">Python · Deep learning</span>
+                      <span class="note-arrow" aria-hidden="true">Explore ↗</span>
+                    </div>
                   </div>
                 </div></div></div>
               </a>
               <a class="note-link reveal atropos project-panel js-atropos" href="projects/project.html?case=nutrisee">
                 <div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">
                   <div class="project-panel-content" data-atropos-offset="1">
-                    <span class="article-meta">2024 · Bangkit</span>
+                    <div class="panel-header">
+                      <span class="article-meta">2024 · Bangkit</span>
+                      <span class="panel-badge">Case 02</span>
+                    </div>
                     <h3>Nutrisee — image recognition for nutritional-fact analysis</h3>
-                    <span class="note-topic">TensorFlow · Python</span>
-                    <span class="note-arrow" aria-hidden="true">02</span>
+                    <div class="panel-footer">
+                      <span class="note-topic">TensorFlow · Python</span>
+                      <span class="note-arrow" aria-hidden="true">Explore ↗</span>
+                    </div>
                   </div>
                 </div></div></div>
               </a>
               <a class="note-link reveal atropos project-panel js-atropos" href="projects/project.html?case=aspirasi">
                 <div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">
                   <div class="project-panel-content" data-atropos-offset="1">
-                    <span class="article-meta">2024 · Mobile</span>
+                    <div class="panel-header">
+                      <span class="article-meta">2024 · Mobile</span>
+                      <span class="panel-badge">Case 03</span>
+                    </div>
                     <h3>ASPIRASI — a Firebase-backed digital guest book</h3>
-                    <span class="note-topic">Kotlin · Firebase</span>
-                    <span class="note-arrow" aria-hidden="true">03</span>
+                    <div class="panel-footer">
+                      <span class="note-topic">Kotlin · Firebase</span>
+                      <span class="note-arrow" aria-hidden="true">Explore ↗</span>
+                    </div>
                   </div>
                 </div></div></div>
               </a>
               <a class="note-link reveal atropos project-panel js-atropos" href="projects/project.html?case=asah">
                 <div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">
                   <div class="project-panel-content" data-atropos-offset="1">
-                    <span class="article-meta">2023 · Mobile</span>
+                    <div class="panel-header">
+                      <span class="article-meta">2023 · Mobile</span>
+                      <span class="panel-badge">Case 04</span>
+                    </div>
                     <h3>ASAH — a health-focused super app built with a six-person team</h3>
-                    <span class="note-topic">Kotlin · Collaboration</span>
-                    <span class="note-arrow" aria-hidden="true">04</span>
+                    <div class="panel-footer">
+                      <span class="note-topic">Kotlin · Collaboration</span>
+                      <span class="note-arrow" aria-hidden="true">Explore ↗</span>
+                    </div>
                   </div>
                 </div></div></div>
               </a>
               <a class="note-link reveal atropos project-panel js-atropos" href="projects/project.html?case=ponorogo-city">
                 <div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">
                   <div class="project-panel-content" data-atropos-offset="1">
-                    <span class="article-meta">2023 · Web</span>
+                    <div class="panel-header">
+                      <span class="article-meta">2023 · Web</span>
+                      <span class="panel-badge">Case 05</span>
+                    </div>
                     <h3>Ponorogo city landing page built with a four-person team</h3>
-                    <span class="note-topic">HTML · CSS · JS · PHP</span>
-                    <span class="note-arrow" aria-hidden="true">05</span>
+                    <div class="panel-footer">
+                      <span class="note-topic">HTML · CSS · JS · PHP</span>
+                      <span class="note-arrow" aria-hidden="true">Explore ↗</span>
+                    </div>
                   </div>
                 </div></div></div>
               </a>
               <a class="note-link reveal atropos project-panel js-atropos" href="projects/project.html?case=ml-desktop-experiments">
                 <div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">
                   <div class="project-panel-content" data-atropos-offset="1">
-                    <span class="article-meta">2022—2023</span>
+                    <div class="panel-header">
+                      <span class="article-meta">2022—2023</span>
+                      <span class="panel-badge">Case 06</span>
+                    </div>
                     <h3>Prediction and decision-making experiments across desktop and ML</h3>
-                    <span class="note-topic">Python · Tkinter · Deep learning</span>
-                    <span class="note-arrow" aria-hidden="true">06</span>
+                    <div class="panel-footer">
+                      <span class="note-topic">Python · Tkinter · Deep learning</span>
+                      <span class="note-arrow" aria-hidden="true">Explore ↗</span>
+                    </div>
                   </div>
                 </div></div></div>
               </a>
@@ -467,16 +636,22 @@
         </div>
       </section>
 
-      <section class="trace-section" id="contact" aria-labelledby="contact-title">
-        <span class="trace-node" data-trace-label="Connect" aria-hidden="true"></span>
+      <section class="portfolio-section" id="contact" aria-labelledby="contact-title">
         <div class="container-xl">
           <div class="contact-panel reveal">
+            <div class="contact-backdrop-glow" aria-hidden="true"></div>
             <p class="eyebrow">Start a conversation</p>
             <h2 class="contact-title" id="contact-title">Let’s build something useful together.</h2>
             <div class="contact-links">
-              <a class="contact-link" href="https://github.com/VictorImm" target="_blank" rel="noreferrer">GitHub ↗</a>
-              <a class="contact-link" href="https://www.linkedin.com/in/victor-immanuel/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-              <a class="contact-link" href="https://developers.google.com/profile/u/110924175177839293802" target="_blank" rel="noreferrer">Google Developer Profile ↗</a>
+              <a class="contact-link" href="https://github.com/VictorImm" target="_blank" rel="noreferrer">
+                <span>GitHub ↗</span>
+              </a>
+              <a class="contact-link" href="https://www.linkedin.com/in/victor-immanuel/" target="_blank" rel="noreferrer">
+                <span>LinkedIn ↗</span>
+              </a>
+              <a class="contact-link" href="https://developers.google.com/profile/u/110924175177839293802" target="_blank" rel="noreferrer">
+                <span>Google Developer Profile ↗</span>
+              </a>
             </div>
           </div>
         </div>
@@ -496,8 +671,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/MotionPathPlugin.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/atropos@2.0.2/atropos.min.js"></script>
   <script src="assets/js/site.js"></script>
 </body>
