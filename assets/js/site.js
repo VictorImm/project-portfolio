@@ -123,7 +123,6 @@
     const scrollable = document.documentElement.scrollHeight - window.innerHeight;
     const pageProgress = scrollable > 0 ? window.scrollY / scrollable : 0;
     root.style.setProperty("--scroll-progress", clamp(pageProgress, 0, 1).toFixed(4));
-    root.style.setProperty("--grid-shift", (pageProgress * 1.5).toFixed(4));
     nav?.classList.toggle("is-scrolled", window.scrollY > 32);
   };
 
@@ -137,7 +136,7 @@
     });
   };
 
-  // Interactive mouse spotlight & 3D floating parallax
+  // Interactive 3D floating parallax
   const float3DElements = [...document.querySelectorAll(".js-3d-float, .js-chip-float")];
   const bgParallaxPlanes = [...document.querySelectorAll(".js-bg-parallax")];
   let pointerTargetX = window.innerWidth / 2;
@@ -149,9 +148,6 @@
   const updatePointerGlow = () => {
     pointerCurrentX += (pointerTargetX - pointerCurrentX) * 0.12;
     pointerCurrentY += (pointerTargetY - pointerCurrentY) * 0.12;
-
-    root.style.setProperty("--pointer-x", `${pointerCurrentX.toFixed(1)}px`);
-    root.style.setProperty("--pointer-y", `${pointerCurrentY.toFixed(1)}px`);
 
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
@@ -204,10 +200,10 @@
     lenis = new window.Lenis({
       autoRaf: !gsapReady,
       anchors: { offset: -88 },
-      lerp: 0.12,
+      lerp: 0.16,
       smoothWheel: true,
-      wheelMultiplier: 1.05,
-      touchMultiplier: 1.2,
+      wheelMultiplier: 1.08,
+      touchMultiplier: 1.15,
       stopInertiaOnNavigate: true
     });
 
@@ -217,7 +213,7 @@
       lenis.on("scroll", window.ScrollTrigger.update);
       lenisTicker = (time) => lenis?.raf(time * 1000);
       window.gsap.ticker.add(lenisTicker);
-      window.gsap.ticker.lagSmoothing(0);
+      window.gsap.ticker.lagSmoothing(500, 33);
     }
   };
 
@@ -359,9 +355,9 @@
             autoAlpha: 1,
             y: 0,
             scale: 1,
-            duration: 0.88,
+            duration: 0.92,
             stagger: 0.08,
-            ease: "power3.out",
+            ease: "power4.out",
             overwrite: true
           })
         });
@@ -585,67 +581,83 @@
   }, { passive: true });
   reduceMotion.addEventListener?.("change", syncExperience);
 
-  // Ambient Horror Ghost Terminal Streamer
-  const initHorrorTerminal = () => {
-    const termNode = document.querySelector(".js-horror-terminal-text");
-    if (!termNode) return;
-
-    const logs = [
-      "> [PANIC] daemon thread escaped isolated sandbox",
-      "> 0x00007FFF: memory dump corrupted at block 0xDEADBEEF",
-      "> Uncaught CursedEntityException: recursion into abyss",
-      "> SELECT soul FROM pool WHERE state = 'CORRUPTED';",
-      "> void* ptr = malloc(0); // cannot escape heap",
-      "> [FATAL] Watchdog heartbeat failed. Watchdog is dead.",
-      "> SIGSEGV in libdaemon.so: 666 threads zombie status",
-      "> Bytecode verification bypassed: 0xCAFEBABE infected",
-      "> [WARN] Kernel inode 0x666 leaked 1048576 handles"
-    ];
-
-    if (reduceMotion.matches) {
-      termNode.textContent = logs[0];
+  // 1-Screen Immersive Asset Preloader & Cinematic Reveal Controller
+  const initSitePreloader = () => {
+    const preloader = document.getElementById("sitePreloader");
+    if (!preloader) {
+      document.body.classList.add("site-revealed");
       return;
     }
 
-    let logIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasTransition = urlParams.has("transition");
+    const hasLoadedBefore = sessionStorage.getItem("portfolio_first_load");
 
-    const tick = () => {
-      const currentLog = logs[logIndex];
-      
-      if (!isDeleting) {
-        charIndex += 1;
-        termNode.textContent = currentLog.slice(0, charIndex);
+    if (hasTransition || hasLoadedBefore) {
+      preloader.style.display = "none";
+      document.body.classList.add("no-preloader", "site-revealed");
+      return;
+    }
 
-        if (charIndex === currentLog.length) {
-          isDeleting = true;
-          window.setTimeout(tick, 3200);
-          return;
-        }
-      } else {
-        charIndex -= 2;
-        if (charIndex < 0) charIndex = 0;
-        termNode.textContent = currentLog.slice(0, charIndex);
+    const countElem = document.getElementById("preloaderCount");
+    const barFillElem = document.getElementById("preloaderBarFill");
+    const logElem = document.getElementById("preloaderLog");
+    const statusElem = document.getElementById("preloaderStatus");
 
-        if (charIndex === 0) {
-          isDeleting = false;
-          logIndex = (logIndex + 1) % logs.length;
-          window.setTimeout(tick, 600);
-          return;
+    const duration = 1800; // 1.8 seconds total immersive load
+    const startTime = performance.now();
+
+    const logs = [
+      { threshold: 0, text: "INITIALIZING ARCHITECTURAL KERNEL..." },
+      { threshold: 24, text: "COMPILING PRODUCTION STACK & MEMORY POOLS..." },
+      { threshold: 54, text: "CALIBRATING OPTICAL SENSORS & 35MM FRAMES..." },
+      { threshold: 84, text: "MOUNTING BESPOKE ATELIER RUNTIME..." },
+      { threshold: 100, text: "ATELIER READY // REVEALING REALM" }
+    ];
+
+    const updatePreloader = (now) => {
+      const elapsed = now - startTime;
+      const progressRatio = Math.min(1, elapsed / duration);
+      const easedProgress = Math.floor(Math.min(100, progressRatio * 100));
+
+      if (countElem) countElem.textContent = String(easedProgress).padStart(2, "0");
+      if (barFillElem) barFillElem.style.width = `${easedProgress}%`;
+
+      if (logElem) {
+        const activeLog = [...logs].reverse().find((l) => easedProgress >= l.threshold);
+        if (activeLog && logElem.textContent !== activeLog.text) {
+          logElem.style.opacity = "0";
+          window.setTimeout(() => {
+            logElem.textContent = activeLog.text;
+            logElem.style.opacity = "1";
+          }, 80);
         }
       }
 
-      const speed = isDeleting ? 25 : Math.floor(Math.random() * 35) + 35;
-      window.setTimeout(tick, speed);
+      if (progressRatio < 1) {
+        window.requestAnimationFrame(updatePreloader);
+      } else {
+        sessionStorage.setItem("portfolio_first_load", "true");
+        if (statusElem) statusElem.textContent = "SYNCHRONIZED // REALM ACTIVE";
+
+        window.setTimeout(() => {
+          preloader.classList.add("is-revealing");
+          document.body.classList.add("site-revealed");
+
+          window.setTimeout(() => {
+            preloader.style.display = "none";
+            window.ScrollTrigger?.refresh();
+          }, 900);
+        }, 220);
+      }
     };
 
-    tick();
+    window.requestAnimationFrame(updatePreloader);
   };
 
   updateChrome();
   updateTenures();
-  initHorrorTerminal();
+  initSitePreloader();
   window.setInterval(updateTenures, 60 * 60 * 1000);
   const year = document.querySelector("[data-current-year]");
   if (year) year.textContent = new Date().getFullYear();
