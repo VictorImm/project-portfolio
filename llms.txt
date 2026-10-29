@@ -1,0 +1,58 @@
+# Victor Immanuel Sunarko
+
+> Software Engineer specializing in enterprise systems, JVM platforms, relational database engines, and operational automation; alongside independent visual storytelling and vintage digicam cinematography based in Surabaya and Kediri, Indonesia.
+
+## Canonical Profiles & URLs
+- Main Portfolio (Software Engineering): https://victorimm.github.io/project-portfolio/
+- Cinema Realm (Visual Storytelling): https://victorimm.github.io/project-portfolio/cinema.html
+- LinkedIn: https://www.linkedin.com/in/victor-immanuel/
+- GitHub: https://github.com/VictorImm
+- Instagram: https://www.instagram.com/v_1ct0r/
+- Email: victor.immanuel.sunarko@gmail.com
+
+---
+
+## 1. Professional Background: Software Engineering
+
+Victor Immanuel Sunarko is a Software Engineer based in Surabaya, Indonesia. He works at PT Salam Pacific Indonesia Lines (PT SPIL), maintaining and evolving custom financial applications across day-to-day maritime and logistics operations.
+
+### Core Engineering Competencies
+- **Architecture**: Enterprise relational systems, legacy MVC server-rendered web interfaces, and distributed service orchestration.
+- **Backend & Services**: JVM applications, Spring, lightweight services, REST APIs, and asynchronous scheduled processing (Cron daemons).
+- **Data & Transactions**: Enterprise relational database engines (PostgreSQL, MySQL, SQL tuning), execution plan optimization, ACID transaction integrity, and audit logging.
+- **Automation**: Document parsing workflows, template automation, and background daemons.
+- **Mobile & Applied AI (Foundation)**: Flutter, Dart, Kotlin, Android Jetpack, RoomDB, Firebase, TensorFlow, and Python image processing.
+
+### Education & Academic Standing
+- **Bachelor of Computer Science (S.Kom)**: Universitas Pembangunan Nasional (UPN) "Veteran" Jawa Timur (Aug 2021—Feb 2025). Graduated with a near-perfect GPA of 3.99 / 4.00.
+- **Acceleration Science Class**: SMAN 1 Kediri (2019—2021).
+- **Bangkit Academy (by Google, GoTo, Traveloka)**: Machine Learning learning path graduate (2024).
+
+### Key Applied Projects
+- **Custom Financial Applications (PT SPIL)**: Day-to-day enterprise financial processing across legacy MVC web and JVM services.
+- **Nutrisee (Bangkit Academy Capstone)**: Mobile application analyzing nutritional facts via TensorFlow machine learning models and Python backend.
+- **Teleport (PT SPIL Internal Collaboration)**: Internal logistics mobile application engineered with Flutter.
+- **Internal Web Workflow Engine (Telkom Indonesia Regional III)**: Document parsing and automation across 10+ operational templates using PHP and regex.
+- **Attendance AI (PT Xeno Persada Teknologi)**: Face detection and verification using native Kotlin, ML Kit, and Firebase.
+
+---
+
+## 2. Independent Creative Realm: Cinema & Visual Storytelling
+
+Beyond engineering, Victor is an independent visual storyteller operating under the moniker and Instagram handle `@v_1ct0r`. His visual practice centers on the philosophy: *"Finding stories in ordinary moments."*
+
+### Artistic Direction & Techniques
+- **Optics & Gear**: Intentional use of vintage CCD digicams—notably the Sony Cyber-shot DSC-W310—paired with fast 35mm primes. Embraces digicam sensor grain, warm colors, and natural light over artificial 4K sharpness.
+- **Core Manifesto**: *"Some memories simply don't belong in 4K. Some places don't need to be extraordinary—they just need someone willing to notice."*
+- **Primary Geographies**: Port of Tanjung Perak (maritime industrial atmosphere), Kediri (rural quietness and trees), and Surabaya urban rooftops.
+
+### Curated Visual Catalog (2024–2026)
+1. **A Place Called Home (2026 · Reel)**: Kediri hometown study shot on Sony DSC-W310 digicam.
+2. **The Art of Noticing (2026 · Reel)**: Maritime industrial vessel Oriental Galaxy at Port of Tanjung Perak.
+3. **☕ Seduh (2025 · Reel / 16:9 Widescreen)**: Atmospheric coffee brewing ritual with talent @pasanko.si and gaffer @cmul.fp.
+4. **Quietly There (2026 · Still)**: 4:5 vertical framing of urban architecture obscured by afternoon trees.
+5. **Momentary (2026 · Still)**: Intimate natural light observation of a sleeping cat through leaf foliage.
+6. **Lustrous Flower (2024 · Still)**: Darkroom contrast study with nocturnal rim lighting on botanical forms.
+7. **Steel Against the Sky (2024 · Still)**: Architectural skyline silhouette above urban rooftops.
+8. **Misaligned (2025 · Motion Study)**: Minimal brutalist composition study using an off-axis mirror cube.
+9. **Sunlit Stillness (2024 · Motion Study)**: Quiet afternoon study of grass textures and low-angle sunlight.

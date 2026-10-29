@@ -1,0 +1,17 @@
+{
+  "name": "Victor Immanuel Sunarko — Portfolio",
+  "short_name": "Victor Portfolio",
+  "description": "Portfolio of Victor Immanuel Sunarko: Software Engineering & Visual Storytelling.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#111213",
+  "theme_color": "#111213",
+  "icons": [
+    {
+      "src": "assets/img/favicon.svg?v=2",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
