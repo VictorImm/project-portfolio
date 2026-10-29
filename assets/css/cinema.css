@@ -236,6 +236,22 @@ html, body {
 .cinema-footer-meta {
   font-size: 0.8rem;
   color: var(--cinema-muted);
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cinema-footer-switch {
+  color: var(--cinema-warm);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.cinema-footer-switch:hover {
+  color: #ffffff;
+  text-decoration: underline;
 }
 
 /* ==========================================================================
