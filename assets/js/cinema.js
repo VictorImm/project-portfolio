@@ -71,6 +71,24 @@
       });
     });
 
+    // Kinetic Magnetic Action Buttons in Cinema Realm
+    if (window.matchMedia("(pointer: fine)").matches) {
+      const magneticCinemaButtons = document.querySelectorAll(".js-kinetic-magnetic");
+      magneticCinemaButtons.forEach((btn) => {
+        btn.addEventListener("mousemove", (e) => {
+          const rect = btn.getBoundingClientRect();
+          const relX = (e.clientX - rect.left - rect.width / 2) * 0.22;
+          const relY = (e.clientY - rect.top - rect.height / 2) * 0.22;
+          const moveX = Math.max(-6, Math.min(6, relX));
+          const moveY = Math.max(-6, Math.min(6, relY));
+          btn.style.transform = `translate3d(${moveX.toFixed(1)}px, ${moveY.toFixed(1)}px, 0)`;
+        });
+        btn.addEventListener("mouseleave", () => {
+          btn.style.transform = "translate3d(0, 0, 0)";
+        });
+      });
+    }
+
     // =========================================================================
     // 2. Magnetic Contextual Cursor Follower (Desktop)
     // =========================================================================

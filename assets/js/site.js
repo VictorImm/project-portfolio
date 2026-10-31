@@ -481,7 +481,13 @@
               const activeIndex = Math.min(projectPanels.length - 1, Math.round(self.progress * (projectPanels.length - 1)));
               projectPanels.forEach((panel, index) => panel.classList.toggle("is-current", index === activeIndex));
               if (projectCurrIndex) {
-                projectCurrIndex.textContent = String(activeIndex + 1).padStart(2, "0");
+                const nextVal = String(activeIndex + 1).padStart(2, "0");
+                if (projectCurrIndex._flipTo && projectCurrIndex.dataset.lastVal !== nextVal) {
+                  projectCurrIndex.dataset.lastVal = nextVal;
+                  projectCurrIndex._flipTo(nextVal);
+                } else if (!projectCurrIndex._flipTo) {
+                  projectCurrIndex.textContent = nextVal;
+                }
               }
             }
           });
@@ -655,9 +661,224 @@
     window.requestAnimationFrame(updatePreloader);
   };
 
+  // =========================================================================
+  // Kinetic Mechanics: 1. Split-Flap Numeric Odometer Reels
+  // =========================================================================
+  const initSplitFlap = () => {
+    const splitFlapElements = document.querySelectorAll(".js-split-flap");
+    const digits = "0123456789";
+
+    splitFlapElements.forEach((el) => {
+      const initialVal = el.dataset.value || el.textContent.trim();
+      el.dataset.lastVal = initialVal;
+
+      const container = document.createElement("span");
+      container.className = "split-flap-container";
+      container.setAttribute("aria-label", initialVal);
+
+      const tiles = [];
+
+      for (let i = 0; i < initialVal.length; i++) {
+        const char = initialVal[i];
+        const tile = document.createElement("span");
+        const isSep = isNaN(char);
+        tile.className = "split-flap-tile" + (isSep ? " is-separator" : "");
+
+        const charSpan = document.createElement("span");
+        charSpan.className = "split-flap-char";
+        charSpan.textContent = char;
+
+        tile.appendChild(charSpan);
+        container.appendChild(tile);
+        tiles.push({ tile, charSpan, isDigit: !isSep });
+      }
+
+      el.textContent = "";
+      el.appendChild(container);
+
+      const flipTo = (targetStr) => {
+        container.setAttribute("aria-label", targetStr);
+
+        if (reduceMotion.matches) {
+          tiles.forEach((t, i) => {
+            if (targetStr[i] !== undefined) t.charSpan.textContent = targetStr[i];
+          });
+          return;
+        }
+
+        tiles.forEach((t, i) => {
+          const finalChar = targetStr[i] || "";
+          if (!t.isDigit || finalChar === t.charSpan.textContent) {
+            t.charSpan.textContent = finalChar;
+            return;
+          }
+
+          const flipsCount = 5 + i * 2;
+          let currentStep = 0;
+
+          t.tile.classList.add("is-flipping");
+
+          const interval = setInterval(() => {
+            currentStep++;
+            if (currentStep >= flipsCount) {
+              clearInterval(interval);
+              t.charSpan.textContent = finalChar;
+              t.tile.classList.remove("is-flipping");
+            } else {
+              t.charSpan.textContent = digits[Math.floor(Math.random() * digits.length)];
+            }
+          }, 35);
+        });
+      };
+
+      el._flipTo = flipTo;
+
+      // Trigger mechanical flip on first scroll entry
+      if (window.ScrollTrigger) {
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 92%",
+          once: true,
+          onEnter: () => flipTo(initialVal)
+        });
+      }
+    });
+  };
+
+  // =========================================================================
+  // Kinetic Mechanics: 2. Magnetic Spring Physics & Elastic Recoil
+  // =========================================================================
+  const initKineticMagnetics = () => {
+    if (reduceMotion.matches || !window.matchMedia("(pointer: fine)").matches || !window.gsap) return;
+
+    const magneticElements = document.querySelectorAll(
+      ".js-kinetic-magnetic, .portal-btn, .nav-availability, .theme-toggle, .proj-nav-btn, .contact-link"
+    );
+
+    magneticElements.forEach((el) => {
+      const xTo = window.gsap.quickTo(el, "x", { duration: 0.36, ease: "power3.out" });
+      const yTo = window.gsap.quickTo(el, "y", { duration: 0.36, ease: "power3.out" });
+
+      const child = el.querySelector(".btn-arrow, .link-arrow, .btn-text, span, svg");
+      const childXTo = child ? window.gsap.quickTo(child, "x", { duration: 0.28, ease: "power2.out" }) : null;
+      const childYTo = child ? window.gsap.quickTo(child, "y", { duration: 0.28, ease: "power2.out" }) : null;
+
+      const handleMouseMove = (e) => {
+        const rect = el.getBoundingClientRect();
+        const relX = e.clientX - rect.left - rect.width / 2;
+        const relY = e.clientY - rect.top - rect.height / 2;
+        const maxDist = 7;
+        const moveX = clamp(relX * 0.25, -maxDist, maxDist);
+        const moveY = clamp(relY * 0.25, -maxDist, maxDist);
+
+        xTo(moveX);
+        yTo(moveY);
+
+        if (childXTo && childYTo) {
+          childXTo(moveX * 0.55);
+          childYTo(moveY * 0.55);
+        }
+      };
+
+      const handleMouseLeave = () => {
+        xTo(0);
+        yTo(0);
+        if (childXTo && childYTo) {
+          childXTo(0);
+          childYTo(0);
+        }
+      };
+
+      el.addEventListener("mousemove", handleMouseMove);
+      el.addEventListener("mouseleave", handleMouseLeave);
+    });
+  };
+
+  // =========================================================================
+  // Kinetic Mechanics: 3. Mechanical Architecture Schematic Rail & Stepper
+  // =========================================================================
+  const initSchematicTracks = () => {
+    const tracks = document.querySelectorAll(".js-schematic-track");
+
+    tracks.forEach((track) => {
+      const carriage = track.querySelector(".rail-carriage");
+      const steps = [...track.querySelectorAll(".schematic-step")];
+      if (!carriage || !steps.length) return;
+
+      let isHovered = false;
+      let currentIndex = 0;
+
+      const updateCarriage = (stepElem) => {
+        if (!stepElem) return;
+        const left = stepElem.offsetLeft;
+        const width = stepElem.offsetWidth;
+        carriage.style.transform = `translateX(${left}px)`;
+        carriage.style.width = `${width}px`;
+
+        steps.forEach((s) => s.classList.toggle("is-active", s === stepElem));
+      };
+
+      // Set initial position on frame
+      const activeStep = track.querySelector(".schematic-step.is-active") || steps[0];
+      currentIndex = steps.indexOf(activeStep);
+      window.requestAnimationFrame(() => updateCarriage(activeStep));
+
+      // Click and hover handlers
+      steps.forEach((step, idx) => {
+        step.addEventListener("mouseenter", () => {
+          isHovered = true;
+          currentIndex = idx;
+          updateCarriage(step);
+        });
+
+        step.addEventListener("click", () => {
+          isHovered = true;
+          currentIndex = idx;
+          updateCarriage(step);
+        });
+
+        step.addEventListener("focus", () => {
+          currentIndex = idx;
+          updateCarriage(step);
+        });
+      });
+
+      track.addEventListener("mouseleave", () => {
+        isHovered = false;
+      });
+
+      // Subtle periodic telemetry advance (every 3.8s if idle)
+      if (!reduceMotion.matches) {
+        window.setInterval(() => {
+          if (isHovered) return;
+          const rect = track.getBoundingClientRect();
+          if (rect.top >= -100 && rect.bottom <= window.innerHeight + 100) {
+            currentIndex = (currentIndex + 1) % steps.length;
+            updateCarriage(steps[currentIndex]);
+          }
+        }, 3800);
+      }
+    });
+
+    // Re-adjust carriages on resize
+    window.addEventListener("resize", () => {
+      tracks.forEach((track) => {
+        const carriage = track.querySelector(".rail-carriage");
+        const active = track.querySelector(".schematic-step.is-active");
+        if (carriage && active) {
+          carriage.style.transform = `translateX(${active.offsetLeft}px)`;
+          carriage.style.width = `${active.offsetWidth}px`;
+        }
+      });
+    }, { passive: true });
+  };
+
   updateChrome();
   updateTenures();
   initSitePreloader();
+  initSplitFlap();
+  initKineticMagnetics();
+  initSchematicTracks();
   window.setInterval(updateTenures, 60 * 60 * 1000);
   const year = document.querySelector("[data-current-year]");
   if (year) year.textContent = new Date().getFullYear();

@@ -182,8 +182,8 @@
 
   <!-- Architectural Background Canvas (PDA & ESR Bespoke Clean Mineral Grid) -->
   <div class="architectural-bg-canvas" aria-hidden="true">
-    <div class="arch-grid-lines"></div>
-    <div class="arch-ambient-glow"></div>
+    <div class="arch-grid-lines js-bg-parallax" data-depth="12"></div>
+    <div class="arch-ambient-glow js-bg-parallax" data-depth="20"></div>
   </div>
 
   <header class="site-nav" aria-label="Primary navigation">
@@ -206,14 +206,14 @@
               <li><a class="nav-link" href="#credentials">Capabilities</a></li>
               <li><a class="nav-link" href="#notes">Projects</a></li>
               <li>
-                <a class="nav-availability" href="https://www.linkedin.com/in/victor-immanuel/" target="_blank" rel="noreferrer">
+                <a class="nav-availability js-kinetic-magnetic" href="https://www.linkedin.com/in/victor-immanuel/" target="_blank" rel="noreferrer">
                   <span class="status-dot" aria-hidden="true"></span>
-                  Connect on LinkedIn
+                  <span>Connect on LinkedIn</span>
                 </a>
               </li>
             </ul>
           </nav>
-          <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode">
+          <button class="theme-toggle js-kinetic-magnetic" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode">
             <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="12" cy="12" r="3.5"></circle>
               <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4"></path>
@@ -265,8 +265,9 @@
               <span><i class="spec-dot eng"></i> RDBMS / SQL</span>
               <span><i class="spec-dot eng"></i> Distributed MVC</span>
             </div>
-            <button class="portal-btn btn-eng js-enter-realm" data-target="engineering" type="button">
-              <span>Explore Systems Architecture ➔</span>
+            <button class="portal-btn btn-eng js-enter-realm js-kinetic-magnetic" data-target="engineering" type="button">
+              <span class="btn-text">Explore Systems Architecture</span>
+              <span class="btn-arrow" aria-hidden="true">➔</span>
             </button>
           </div>
 
@@ -283,8 +284,9 @@
               <span><i class="spec-dot creative"></i> Fast Primes</span>
               <span><i class="spec-dot creative"></i> DaVinci Resolve</span>
             </div>
-            <a class="portal-btn btn-creative js-warp-to-cinema" href="cinema.html" role="button">
-              <span>Enter Visual Storytelling Realm ➔</span>
+            <a class="portal-btn btn-creative js-warp-to-cinema js-kinetic-magnetic" href="cinema.html" role="button">
+              <span class="btn-text">Enter Visual Storytelling Realm</span>
+              <span class="btn-arrow" aria-hidden="true">➔</span>
             </a>
           </div>
         </div>
@@ -338,12 +340,13 @@
                 </div>
                 <h3>Maintain and evolve the web layer</h3>
                 <p>Building and refining business-facing interfaces across legacy MVC and server-rendered web applications while preserving established workflows.</p>
-                <div class="building-schematic">
-                  <span class="schematic-step">Server Render</span>
-                  <span class="schematic-arrow">➔</span>
-                  <span class="schematic-step">Client Scripting</span>
-                  <span class="schematic-arrow">➔</span>
-                  <span class="schematic-step">State Sync</span>
+                <div class="building-schematic js-schematic-track" data-track-id="layer-01" role="region" aria-label="Web layer pipeline">
+                  <div class="schematic-rail" aria-hidden="true"><div class="rail-carriage"></div></div>
+                  <button type="button" class="schematic-step is-active" data-step="0"><span>Server Render</span></button>
+                  <span class="schematic-arrow" aria-hidden="true">➔</span>
+                  <button type="button" class="schematic-step" data-step="1"><span>Client Scripting</span></button>
+                  <span class="schematic-arrow" aria-hidden="true">➔</span>
+                  <button type="button" class="schematic-step" data-step="2"><span>State Sync</span></button>
                 </div>
               </article>
 
@@ -354,12 +357,13 @@
                 </div>
                 <h3>Work close to the data layer</h3>
                 <p>Investigating query behavior, preserving business semantics, and improving data-intensive paths with careful, evidence-led optimization.</p>
-                <div class="building-schematic">
-                  <span class="schematic-step">Relational Engine</span>
-                  <span class="schematic-arrow">➔</span>
-                  <span class="schematic-step">Index & Plan</span>
-                  <span class="schematic-arrow">➔</span>
-                  <span class="schematic-step">ACID Safety</span>
+                <div class="building-schematic js-schematic-track" data-track-id="layer-02" role="region" aria-label="Data engine pipeline">
+                  <div class="schematic-rail" aria-hidden="true"><div class="rail-carriage"></div></div>
+                  <button type="button" class="schematic-step is-active" data-step="0"><span>Relational Engine</span></button>
+                  <span class="schematic-arrow" aria-hidden="true">➔</span>
+                  <button type="button" class="schematic-step" data-step="1"><span>Index &amp; Plan</span></button>
+                  <span class="schematic-arrow" aria-hidden="true">➔</span>
+                  <button type="button" class="schematic-step" data-step="2"><span>ACID Safety</span></button>
                 </div>
               </article>
 
@@ -370,12 +374,13 @@
                 </div>
                 <h3>Connect work across services</h3>
                 <p>Connecting JVM applications, lightweight services, workflow automation, and scheduled jobs to support integration and operational processing.</p>
-                <div class="building-schematic">
-                  <span class="schematic-step">JVM Services</span>
-                  <span class="schematic-arrow">➔</span>
-                  <span class="schematic-step">REST Pipeline</span>
-                  <span class="schematic-arrow">➔</span>
-                  <span class="schematic-step">Scheduled Jobs</span>
+                <div class="building-schematic js-schematic-track" data-track-id="layer-03" role="region" aria-label="Services pipeline">
+                  <div class="schematic-rail" aria-hidden="true"><div class="rail-carriage"></div></div>
+                  <button type="button" class="schematic-step is-active" data-step="0"><span>JVM Services</span></button>
+                  <span class="schematic-arrow" aria-hidden="true">➔</span>
+                  <button type="button" class="schematic-step" data-step="1"><span>REST Pipeline</span></button>
+                  <span class="schematic-arrow" aria-hidden="true">➔</span>
+                  <button type="button" class="schematic-step" data-step="2"><span>Scheduled Jobs</span></button>
                 </div>
               </article>
             </div>
@@ -584,7 +589,7 @@
                 <li class="timeline-item reveal">
                   <span class="timeline-period">Aug 2021—Feb 2025</span>
                   <span class="timeline-role">Bachelor of Computer Science</span>
-                  <p>UPN “Veteran” Jawa Timur · GPA 3.99/4.00.</p>
+                  <p>UPN “Veteran” Jawa Timur · GPA <span class="js-split-flap" data-value="3.99">3.99</span>/4.00.</p>
                 </li>
                 <li class="timeline-item reveal">
                   <span class="timeline-period">2019—2021</span>
@@ -646,10 +651,10 @@
             <div class="col-lg-5 offset-lg-1">
               <p class="section-lead mb-3">Independent and collaborative work across health, productivity, web, mobile, desktop applications, and applied machine learning.</p>
               <div class="projects-guide-bar d-none d-lg-flex align-items-center justify-content-between">
-                <span class="projects-counter-badge"><b id="project-curr-index">01</b> / 06 CASES</span>
+                <span class="projects-counter-badge"><b id="project-curr-index" class="js-split-flap" data-value="01">01</b> / <span class="js-split-flap" data-value="06">06</span> CASES</span>
                 <div class="projects-actions">
-                  <button class="proj-nav-btn js-prev-proj" type="button" aria-label="Previous project">←</button>
-                  <button class="proj-nav-btn js-next-proj" type="button" aria-label="Next project">→</button>
+                  <button class="proj-nav-btn js-prev-proj js-kinetic-magnetic" type="button" aria-label="Previous project">←</button>
+                  <button class="proj-nav-btn js-next-proj js-kinetic-magnetic" type="button" aria-label="Next project">→</button>
                 </div>
               </div>
             </div>
@@ -789,14 +794,14 @@
             <p class="eyebrow">Start a conversation</p>
             <h2 class="contact-title" id="contact-title">Let’s build something useful together.</h2>
             <div class="contact-links">
-              <a class="contact-link" href="https://github.com/VictorImm" target="_blank" rel="noreferrer">
-                <span>GitHub ↗</span>
+              <a class="contact-link js-kinetic-magnetic" href="https://github.com/VictorImm" target="_blank" rel="noreferrer">
+                <span>GitHub</span> <span class="link-arrow" aria-hidden="true">↗</span>
               </a>
-              <a class="contact-link" href="https://www.linkedin.com/in/victor-immanuel/" target="_blank" rel="noreferrer">
-                <span>LinkedIn ↗</span>
+              <a class="contact-link js-kinetic-magnetic" href="https://www.linkedin.com/in/victor-immanuel/" target="_blank" rel="noreferrer">
+                <span>LinkedIn</span> <span class="link-arrow" aria-hidden="true">↗</span>
               </a>
-              <a class="contact-link" href="https://developers.google.com/profile/u/110924175177839293802" target="_blank" rel="noreferrer">
-                <span>Google Developer Profile ↗</span>
+              <a class="contact-link js-kinetic-magnetic" href="https://developers.google.com/profile/u/110924175177839293802" target="_blank" rel="noreferrer">
+                <span>Google Developer Profile</span> <span class="link-arrow" aria-hidden="true">↗</span>
               </a>
             </div>
           </div>

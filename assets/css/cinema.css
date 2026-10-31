@@ -233,6 +233,13 @@ html, body {
   transform: translateY(-1px);
 }
 
+.cinema-contact-link:active,
+.btn-switch-code:active,
+.btn-cinema-action:active {
+  transform: scale(0.975) translateY(1.5px) !important;
+  transition: transform 0.05s ease !important;
+}
+
 .cinema-footer-meta {
   font-size: 0.8rem;
   color: var(--cinema-muted);
